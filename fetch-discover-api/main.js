@@ -1,5 +1,6 @@
-const { response } = require("express")
 
+
+const { response } = require("express")
 
 const url = 'http://localhost:5500/api'
 
@@ -21,6 +22,26 @@ function getUser(){
     })
     .catch(error => console.error(error))
 }
+
+function addUser(newUser){
+    fetch(url, {
+        method: "POST",
+        body: JSON.stringify(newUser),
+        headers: {
+            "content-type": "aplication/json; charset=UTF-8"
+        }
+    })
+    .then(response => response.JSON())
+    .then(data => alertApi.textContent = data)
+    .catch(error => console.error(error))
+}
+
+const newUser = {
+    name: "neymar junior",
+    avatar: "http://lorempixel.com/400/200",
+    city: "arabia"
+}
+addUser(newUser)
 
 getUsers()
 getUsers()
